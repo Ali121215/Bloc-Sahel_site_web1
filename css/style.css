@@ -1,0 +1,22 @@
+:root {
+  --bg: #f6f3ea;
+  --ink: #2f2e2c;
+  --terra: #aa6c48;
+  --terra-dark: #86502f;
+  --ochre: #c98e49;
+  --whatsapp: #25d366;
+  --radius: 12px;
+  --font: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; font-family: var(--font); background: var(--bg); color: var(--ink); line-height: 1.6; }
+.container { width: min(100% - 2rem, 60rem); margin-inline: auto; }
+.hero { padding-block: 3rem; text-align: center; }
+h1 { margin: 0 0 0.5rem; font-size: clamp(2rem, 8vw, 3.5rem); line-height: 1.1; color: var(--terra-dark); }
+.tagline { margin: 0 0 2rem; font-size: 1.125rem; }
+.actions { display: grid; gap: 0.75rem; max-width: 22rem; margin-inline: auto; }
+.btn { display: block; padding: 0.9rem 1.25rem; border-radius: var(--radius); font-weight: 700; text-align: center; text-decoration: none; }
+.btn-primary { background: var(--whatsapp); color: var(--ink); }
+.btn-secondary { background: var(--terra-dark); color: #fff; }
+.btn:focus-visible { outline: 3px solid var(--ochre); outline-offset: 3px; }
+@media (min-width: 40rem) { .actions { grid-auto-flow: column; max-width: none; justify-content: center; } }
