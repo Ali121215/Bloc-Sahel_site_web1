@@ -35,3 +35,13 @@ h1 { margin: 0 0 0.5rem; font-size: clamp(2rem, 8vw, 3.5rem); line-height: 1.1; 
 .card .dims { margin: 0 0 0.5rem; font-weight: 700; color: var(--terra-dark); }
 .card p { margin: 0 0 0.75rem; }
 .card .price { margin: 0; font-size: 0.9rem; color: #5a5750; }
+
+.features { display: grid; gap: 1rem; margin: 0; padding: 0; list-style: none; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); }
+.features li { padding: 1rem 1.25rem; background: #efe9d8; border-left: 4px solid var(--terra); border-radius: var(--radius); }
+.features strong { display: block; margin-bottom: 0.25rem; color: var(--terra-dark); }
+.site-footer { margin-top: 3rem; padding-block: 2.5rem; background: #1c1b1a; color: #f3efe3; }
+.site-footer a { color: #f3efe3; }
+.site-footer h2 { margin: 0 0 1rem; font-size: 1.25rem; }
+.site-footer ul { margin: 0; padding: 0; list-style: none; }
+.site-footer li { margin-bottom: 0.5rem; }
+.copyright { margin: 1.5rem 0 0; font-size: 0.875rem; }
