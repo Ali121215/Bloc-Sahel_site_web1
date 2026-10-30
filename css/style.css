@@ -20,3 +20,18 @@ h1 { margin: 0 0 0.5rem; font-size: clamp(2rem, 8vw, 3.5rem); line-height: 1.1; 
 .btn-secondary { background: var(--terra-dark); color: #fff; }
 .btn:focus-visible { outline: 3px solid var(--ochre); outline-offset: 3px; }
 @media (min-width: 40rem) { .actions { grid-auto-flow: column; max-width: none; justify-content: center; } }
+
+.site-header { border-bottom: 1px solid #e3ddcc; }
+.site-header .container { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: 0.75rem; }
+.logo img { display: block; height: 3.5rem; width: auto; }
+.nav { display: flex; gap: 1.25rem; }
+.nav a { padding: 0.5rem 0; color: var(--ink); font-weight: 600; text-decoration: none; }
+.nav a:hover { color: var(--terra-dark); }
+.section { padding-block: 3rem; }
+.section h2 { margin: 0 0 1.5rem; font-size: clamp(1.5rem, 5vw, 2.25rem); color: var(--terra-dark); }
+.grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); }
+.card { padding: 1.25rem; background: #fff; border: 1px solid #e3ddcc; border-radius: var(--radius); }
+.card h3 { margin: 0 0 0.25rem; font-size: 1.25rem; }
+.card .dims { margin: 0 0 0.5rem; font-weight: 700; color: var(--terra-dark); }
+.card p { margin: 0 0 0.75rem; }
+.card .price { margin: 0; font-size: 0.9rem; color: #5a5750; }
