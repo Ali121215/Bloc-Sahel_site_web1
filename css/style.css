@@ -45,3 +45,5 @@ h1 { margin: 0 0 0.5rem; font-size: clamp(2rem, 8vw, 3.5rem); line-height: 1.1; 
 .site-footer ul { margin: 0; padding: 0; list-style: none; }
 .site-footer li { margin-bottom: 0.5rem; }
 .copyright { margin: 1.5rem 0 0; font-size: 0.875rem; }
+
+.site-footer a[href^="tel"] { white-space: nowrap; }
