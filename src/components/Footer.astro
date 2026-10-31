@@ -1,0 +1,22 @@
+---
+import { site } from '../data/site.js';
+---
+
+<footer class="site-footer">
+  <div class="container">
+    <h2>Contact</h2>
+    <ul>
+      <li>
+        WhatsApp et appel :{' '}
+        {site.telephones.map((t, i) => (
+          <>
+            {i > 0 && ' · '}<a href={`tel:${t.lien}`}>{t.affiche}</a>
+          </>
+        ))}
+      </li>
+      <li>Email : <a href={`mailto:${site.email}`}>{site.email}</a></li>
+      <li>Adresse : {site.adresse} · <a href={site.carte}>Voir sur Google Maps</a></li>
+    </ul>
+    <p class="copyright">© {new Date().getFullYear()} {site.nom}. Tous droits réservés.</p>
+  </div>
+</footer>

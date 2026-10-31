@@ -10,3 +10,7 @@ dist/
 Thumbs.db
 .vscode/*
 !.vscode/settings.json
+
+node_modules/
+dist/
+.astro/

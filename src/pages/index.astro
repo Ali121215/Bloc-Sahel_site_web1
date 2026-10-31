@@ -1,0 +1,51 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ProductCard from '../components/ProductCard.astro';
+import WhatsAppButton from '../components/WhatsAppButton.astro';
+import { site, lienWhatsApp } from '../data/site.js';
+import { produits } from '../data/produits.js';
+
+const atouts = [
+  { titre: "Fabriqué à N'Djamena", texte: 'Une usine locale, déjà ouverte.' },
+  { titre: 'Dimensions claires', texte: 'Chaque produit est présenté avec ses dimensions exactes.' },
+  { titre: 'Pour tous vos chantiers', texte: 'Maisons, clôtures, planchers, cours et parkings.' },
+  { titre: 'Devis simple', texte: 'Écrivez-nous sur WhatsApp ou appelez-nous pour obtenir votre devis.' },
+];
+---
+
+<Layout
+  title="Bloc Sahel — Blocs, hourdis et pavés à N'Djamena"
+  description="Bloc Sahel fabrique des blocs creux, des hourdis et des pavés à N'Djamena. Demandez votre devis sur WhatsApp."
+>
+  <Header />
+  <main>
+    <section class="hero container">
+      <h1>{site.nom}</h1>
+      <p class="tagline">{site.slogan}</p>
+      <div class="actions" id="devis">
+        <a class="btn btn-primary" href={lienWhatsApp}>Demander un devis sur WhatsApp</a>
+        <a class="btn btn-secondary" href={`tel:${site.telephones[0].lien}`}>
+          Appeler le {site.telephones[0].affiche}
+        </a>
+      </div>
+    </section>
+
+    <section class="section container" id="produits">
+      <h2>Nos produits</h2>
+      <div class="grid">
+        {produits.map((p) => <ProductCard nom={p.nom} dimensions={p.dimensions} usage={p.usage} />)}
+      </div>
+    </section>
+
+    <section class="section container" id="atouts">
+      <h2>Pourquoi Bloc Sahel</h2>
+      <ul class="features">
+        {atouts.map((a) => <li><strong>{a.titre}</strong>{a.texte}</li>)}
+      </ul>
+    </section>
+  </main>
+  <Footer />
+  <WhatsAppButton />
+</Layout>

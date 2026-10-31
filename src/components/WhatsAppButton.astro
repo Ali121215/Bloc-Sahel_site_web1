@@ -1,0 +1,19 @@
+---
+import { lienWhatsApp } from '../data/site.js';
+---
+
+<a class="fab" href={lienWhatsApp} aria-label="Écrire sur WhatsApp pour un devis">
+  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 4h16v12H9l-5 5z"></path></svg>
+  <span>Devis WhatsApp</span>
+</a>
+
+<script>
+  // Cache le bouton tant que les gros boutons du haut de page sont visibles.
+  const fab = document.querySelector('.fab');
+  const devis = document.querySelector('#devis');
+  if (fab && devis && 'IntersectionObserver' in window) {
+    new IntersectionObserver((entries) => {
+      fab.classList.toggle('is-hidden', entries[0].isIntersecting);
+    }).observe(devis);
+  }
+</script>
