@@ -57,3 +57,30 @@ h1 { margin: 0 0 0.5rem; font-size: clamp(2rem, 8vw, 3.5rem); line-height: 1.1; 
 .fab:focus-visible { outline: 3px solid var(--ochre); outline-offset: 3px; }
 .site-footer { padding-bottom: 5rem; }
 @media (prefers-reduced-motion: reduce) { .fab { transition: none; } }
+
+/* Pages intérieures */
+.page-title { margin: 0 0 0.5rem; font-size: clamp(1.75rem, 6vw, 2.75rem); line-height: 1.15; color: var(--terra-dark); }
+.lead { margin: 0 0 1.5rem; font-size: 1.125rem; }
+.breadcrumb { margin: 0 0 1rem; font-size: 0.9rem; }
+.breadcrumb a, .links a, .card h3 a { color: var(--terra-dark); }
+.card h3 a { text-decoration: none; }
+.card h3 a:hover { text-decoration: underline; }
+.dims.lead { font-weight: 700; color: var(--terra-dark); }
+.price { font-size: 0.9rem; color: #5a5750; }
+.actions-left { margin-inline: 0; margin-top: 1.5rem; max-width: 22rem; }
+@media (min-width: 40rem) { .actions-left { max-width: none; justify-content: start; } }
+.section h2 + .links, .section h2 + p { margin-top: 0; }
+.section .page-title ~ h2 { margin-top: 2rem; }
+.links { margin: 0; padding: 0; list-style: none; }
+.links li { padding: 0.35rem 0; }
+.links span { color: #5a5750; font-size: 0.9rem; }
+
+.panel { margin-block: 1.5rem; padding: 1.25rem; background: #fff; border: 1px solid #e3ddcc; border-radius: var(--radius); }
+.panel h2 { margin: 0 0 0.5rem; font-size: 1.25rem; }
+.note { margin: 0 0 1rem; font-size: 0.9rem; color: #5a5750; }
+.form { display: grid; gap: 0.5rem; max-width: 30rem; }
+.form label { font-weight: 600; }
+.form input, .form select, .form textarea { width: 100%; padding: 0.7rem 0.8rem; border: 1px solid #b9b2a0; border-radius: 8px; background: #fff; color: var(--ink); font: inherit; }
+.form input:focus-visible, .form select:focus-visible, .form textarea:focus-visible { outline: 3px solid var(--ochre); outline-offset: 1px; }
+.form .btn { margin-top: 0.75rem; border: 0; font: inherit; font-weight: 700; cursor: pointer; }
+.result { margin: 1rem 0 0; font-weight: 700; color: var(--terra-dark); }

@@ -1,0 +1,105 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { site } from '../data/site.js';
+import { produits } from '../data/produits.js';
+
+const calculables = produits.filter((p) => p.piecesParM2);
+---
+
+<Layout
+  title="Demander un devis — Bloc Sahel, N'Djamena"
+  description="Demandez votre devis pour des blocs, hourdis ou pavés fabriqués à N'Djamena. Calculez la quantité nécessaire."
+  fab={false}
+>
+  <section class="section container">
+    <h1 class="page-title">Demander un devis</h1>
+    <p class="lead">Remplissez ce formulaire : votre demande s'ouvre dans WhatsApp, prête à envoyer.</p>
+
+    <div class="panel">
+      <h2>1. Calculer la quantité</h2>
+      <p class="note">Estimation pour un mur ou une surface, hors joints, avec 5 % en plus pour la casse.</p>
+      <form id="calc" class="form" data-marge="1.05">
+        <label for="calc-produit">Produit</label>
+        <select id="calc-produit" required>
+          {calculables.map((p) => (
+            <option value={p.id} data-pieces={p.piecesParM2}>{p.nom} ({p.dimensions})</option>
+          ))}
+        </select>
+        <label for="calc-surface">Surface (en m²)</label>
+        <input id="calc-surface" type="number" inputmode="decimal" min="0" step="any" placeholder="Exemple : 50" required />
+        <button class="btn btn-secondary" type="submit">Calculer</button>
+      </form>
+      <p id="calc-resultat" class="result" aria-live="polite"></p>
+    </div>
+
+    <div class="panel">
+      <h2>2. Votre demande</h2>
+      <form id="devis" class="form" data-whatsapp={site.whatsapp}>
+        <label for="nom">Votre nom</label>
+        <input id="nom" name="nom" type="text" autocomplete="name" required />
+
+        <label for="produit">Produit</label>
+        <select id="produit" name="produit" required>
+          <option value="">Choisir un produit</option>
+          {produits.map((p) => <option value={p.id}>{p.nom} ({p.dimensions})</option>)}
+        </select>
+
+        <label for="quantite">Quantité (nombre de pièces)</label>
+        <input id="quantite" name="quantite" type="text" inputmode="numeric" placeholder="Exemple : 2000" />
+
+        <label for="lieu">Lieu de livraison (quartier, ville)</label>
+        <input id="lieu" name="lieu" type="text" autocomplete="street-address" />
+
+        <label for="message">Message (facultatif)</label>
+        <textarea id="message" name="message" rows="3"></textarea>
+
+        <button class="btn btn-primary" type="submit">Envoyer ma demande sur WhatsApp</button>
+      </form>
+      <p class="note">
+        Vous préférez appeler ? <a href={`tel:${site.telephones[0].lien}`}>{site.telephones[0].affiche}</a>
+      </p>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  const calc = document.querySelector<HTMLFormElement>('#calc')!;
+  const calcProduit = document.querySelector<HTMLSelectElement>('#calc-produit')!;
+  const calcSurface = document.querySelector<HTMLInputElement>('#calc-surface')!;
+  const resultat = document.querySelector<HTMLElement>('#calc-resultat')!;
+  const form = document.querySelector<HTMLFormElement>('#devis')!;
+  const produit = document.querySelector<HTMLSelectElement>('#produit')!;
+  const quantite = document.querySelector<HTMLInputElement>('#quantite')!;
+
+  const nomDe = (select: HTMLSelectElement) => select.selectedOptions[0].textContent!.split(' (')[0];
+
+  // Produit choisi depuis une page produit : /devis/?produit=pave-225
+  const demande = new URLSearchParams(location.search).get('produit');
+  if (demande) {
+    if ([...produit.options].some((o) => o.value === demande)) produit.value = demande;
+    if ([...calcProduit.options].some((o) => o.value === demande)) calcProduit.value = demande;
+  }
+
+  calc.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const surface = parseFloat(calcSurface.value.replace(',', '.'));
+    const option = calcProduit.selectedOptions[0];
+    const parM2 = parseFloat(option.dataset.pieces!);
+    if (!(surface > 0)) return;
+    const total = Math.ceil(surface * parM2 * parseFloat(calc.dataset.marge!));
+    const nom = nomDe(calcProduit);
+    resultat.textContent = `Il faut environ ${total.toLocaleString('fr-FR')} pièces de « ${nom} » pour ${surface.toLocaleString('fr-FR')} m².`;
+    quantite.value = String(total);
+    produit.value = calcProduit.value;
+  });
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const d = new FormData(form);
+    const lignes = ['Bonjour, je souhaite un devis.', `Nom : ${d.get('nom')}`, `Produit : ${nomDe(produit)}`];
+    if (d.get('quantite')) lignes.push(`Quantité : ${d.get('quantite')}`);
+    if (d.get('lieu')) lignes.push(`Livraison : ${d.get('lieu')}`);
+    if (d.get('message')) lignes.push(`Message : ${d.get('message')}`);
+    location.href = `https://wa.me/${form.dataset.whatsapp}?text=${encodeURIComponent(lignes.join('\n'))}`;
+  });
+</script>

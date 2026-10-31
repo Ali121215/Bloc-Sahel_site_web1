@@ -1,9 +1,9 @@
 ---
-const { nom, dimensions, usage } = Astro.props;
+const { id, nom, dimensions, usage } = Astro.props;
 ---
 
 <article class="card">
-  <h3>{nom}</h3>
+  <h3><a href={`/produits/${id}/`}>{nom}</a></h3>
   <p class="dims">{dimensions}</p>
   <p>{usage}</p>
   <p class="price">Prix : sur devis</p>

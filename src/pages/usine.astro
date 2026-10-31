@@ -1,0 +1,39 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { site, lienWhatsApp } from '../data/site.js';
+import { produits } from '../data/produits.js';
+---
+
+<Layout
+  title="L'usine — Bloc Sahel, N'Djamena"
+  description="L'usine Bloc Sahel à Fondoré, N'Djamena : blocs creux, hourdis et pavés fabriqués au Tchad."
+>
+  <section class="section container">
+    <h1 class="page-title">Notre usine à N'Djamena</h1>
+    <p class="lead">
+      Bloc Sahel fabrique ses blocs, ses hourdis et ses pavés sur place, à Fondoré, N'Djamena.
+    </p>
+    <p>
+      Acheter auprès d'une usine locale, c'est parler directement au fabricant : vous posez vos questions
+      sur les dimensions, les quantités et la livraison, et vous recevez un devis clair.
+    </p>
+
+    <h2>Ce que nous fabriquons</h2>
+    <ul class="links">
+      {produits.map((p) => (
+        <li><a href={`/produits/${p.id}/`}>{p.nom}</a> <span>{p.dimensions}</span></li>
+      ))}
+    </ul>
+
+    <h2>Où nous trouver</h2>
+    <p>{site.adresse}</p>
+    <p><a href={site.carte}>Voir l'usine sur Google Maps</a></p>
+
+    <div class="actions actions-left">
+      <a class="btn btn-primary" href={lienWhatsApp}>Demander un devis sur WhatsApp</a>
+      <a class="btn btn-secondary" href={`tel:${site.telephones[0].lien}`}>
+        Appeler le {site.telephones[0].affiche}
+      </a>
+    </div>
+  </section>
+</Layout>

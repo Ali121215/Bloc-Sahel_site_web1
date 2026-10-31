@@ -1,7 +1,11 @@
 ---
 import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import WhatsAppButton from '../components/WhatsAppButton.astro';
 
-const { title, description } = Astro.props;
+// fab : afficher le bouton WhatsApp flottant (inutile sur la page devis).
+const { title, description, fab = true } = Astro.props;
 ---
 
 <!doctype html>
@@ -22,6 +26,11 @@ const { title, description } = Astro.props;
     />
   </head>
   <body>
-    <slot />
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+    {fab && <WhatsAppButton />}
   </body>
 </html>

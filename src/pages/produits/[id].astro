@@ -1,0 +1,40 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { site } from '../../data/site.js';
+import { produits } from '../../data/produits.js';
+
+export function getStaticPaths() {
+  return produits.map((p) => ({ params: { id: p.id }, props: { produit: p } }));
+}
+
+const { produit } = Astro.props;
+const message = `Bonjour, je souhaite un devis pour : ${produit.nom}.`;
+const lienWhatsApp = `https://wa.me/${site.whatsapp}?text=${encodeURIComponent(message)}`;
+---
+
+<Layout
+  title={`${produit.nom} — Bloc Sahel, N'Djamena`}
+  description={`${produit.nom} (${produit.dimensions}) fabriqué à N'Djamena. ${produit.usage} Demandez votre devis sur WhatsApp.`}
+>
+  <section class="section container">
+    <p class="breadcrumb"><a href="/#produits">Produits</a> › {produit.nom}</p>
+    <h1 class="page-title">{produit.nom}</h1>
+    <p class="lead dims">{produit.dimensions}</p>
+    <p>{produit.description}</p>
+    <p><strong>Utilisation :</strong> {produit.usage}</p>
+    <p class="price">Prix : sur devis</p>
+    <div class="actions actions-left">
+      <a class="btn btn-primary" href={lienWhatsApp}>Demander un devis sur WhatsApp</a>
+      <a class="btn btn-secondary" href={`/devis/?produit=${produit.id}`}>Remplir la demande de devis</a>
+    </div>
+  </section>
+
+  <section class="section container">
+    <h2>Les autres produits</h2>
+    <ul class="links">
+      {produits.filter((p) => p.id !== produit.id).map((p) => (
+        <li><a href={`/produits/${p.id}/`}>{p.nom}</a> <span>{p.dimensions}</span></li>
+      ))}
+    </ul>
+  </section>
+</Layout>
