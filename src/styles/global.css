@@ -84,3 +84,4 @@ h1 { margin: 0 0 0.5rem; font-size: clamp(2rem, 8vw, 3.5rem); line-height: 1.1; 
 .form input:focus-visible, .form select:focus-visible, .form textarea:focus-visible { outline: 3px solid var(--ochre); outline-offset: 1px; }
 .form .btn { margin-top: 0.75rem; border: 0; font: inherit; font-weight: 700; cursor: pointer; }
 .result { margin: 1rem 0 0; font-weight: 700; color: var(--terra-dark); }
+.panel a { color: var(--terra-dark); font-weight: 600; }
