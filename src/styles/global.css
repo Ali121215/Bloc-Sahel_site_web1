@@ -87,3 +87,5 @@ h1 { margin: 0 0 0.5rem; font-size: clamp(2rem, 8vw, 3.5rem); line-height: 1.1; 
 .panel a { color: var(--terra-dark); font-weight: 600; }
 
 footer { padding-bottom: 4.5rem; }
+
+@media (max-width: 480px) { .fab span { display: none; } .fab { padding: 0.85rem; } }
