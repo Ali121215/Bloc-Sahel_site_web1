@@ -89,3 +89,11 @@ h1 { margin: 0 0 0.5rem; font-size: clamp(2rem, 8vw, 3.5rem); line-height: 1.1; 
 footer { padding-bottom: 4.5rem; }
 
 @media (max-width: 480px) { .fab span { display: none; } .fab { padding: 0.85rem; } }
+
+.card-img { display: block; margin: -0.25rem -0.25rem 0.75rem; }
+.card-img img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 8px; }
+.product-photo { display: block; width: 100%; max-width: 720px; height: auto; border-radius: var(--radius); margin: 0 0 1.25rem; }
+
+.card-img { display: block; margin: -0.25rem -0.25rem 0.75rem; }
+.card-img img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 8px; }
+.product-photo { display: block; width: 100%; max-width: 720px; height: auto; border-radius: var(--radius); margin: 0 0 1.25rem; }
